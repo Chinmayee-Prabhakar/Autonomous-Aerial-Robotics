@@ -1,0 +1,2 @@
+"""Future inertial attitude estimators."""
+

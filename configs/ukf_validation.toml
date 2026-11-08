@@ -1,0 +1,16 @@
+# M4 diagnostic replay. The operational UKF settings remain in ukf.toml.
+[inputs]
+ukf_config = "configs/ukf.toml"
+imu_config = "configs/imu.toml"
+measurements = "outputs/imu/lateral_waypoint/measurements.csv"
+truth = "outputs/imu/lateral_waypoint/truth.csv"
+baseline_metrics = "outputs/ukf/lateral_waypoint/metrics.json"
+
+[yaw_prior_sweep]
+initial_yaw_std_deg = [5.0, 10.0, 20.0, 30.0, 45.0, 60.0]
+
+[static_consistency]
+# Analytic, externally supported stationary IMU with bias-free synthetic noise.
+seeds = [11, 19, 29, 37, 43, 53, 61, 71]
+duration_s = 3.0
+sample_hz = 50.0

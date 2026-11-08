@@ -1,0 +1,66 @@
+# M5 controlled feedback experiment. Run from the repository root.
+[inputs]
+imu_config = "configs/imu.toml"
+madgwick_config = "configs/madgwick.toml"
+ukf_config = "configs/ukf.toml"
+
+[experiment]
+# Plant integration and controller run at 100 Hz; the unchanged IMU runs at 50 Hz.
+controller_hz = 100.0
+modes = ["truth", "madgwick", "ukf"]
+nominal_seed = 19
+
+[failure]
+max_position_error_m = 3.0
+max_abs_position_m = 5.0
+max_tilt_deg = 60.0
+max_body_rate_rad_s = 6.0
+settle_final_error_m = 0.15
+settle_mean_error_m = 0.15
+settle_window_s = 2.0
+
+# Waypoint rows are [time_s, east_m, north_m, up_m, yaw_deg].
+[[scenarios]]
+name = "hover"
+duration_s = 10.0
+waypoints = [[0.0, 0.0, 0.0, 1.0, 0.0]]
+
+[[scenarios]]
+name = "lateral_waypoint"
+duration_s = 10.0
+waypoints = [[0.0, 0.0, 0.0, 1.0, 0.0], [2.5, 1.0, 0.0, 1.0, 0.0]]
+
+[[scenarios]]
+name = "coupled_waypoints"
+duration_s = 12.0
+waypoints = [[0.0, 0.0, 0.0, 1.0, 0.0], [2.5, 0.7, 0.6, 1.0, 0.0], [6.0, -0.5, 0.8, 1.0, 0.0]]
+
+[sensitivity]
+# Five paired seeds for each condition and each primary scenario.
+seeds = [11, 19, 29, 37, 43]
+scenarios = ["hover", "lateral_waypoint"]
+
+[[sensitivity.conditions]]
+name = "ideal"
+bias_scale = 0.0
+noise_scale = 0.0
+
+[[sensitivity.conditions]]
+name = "noise_only"
+bias_scale = 0.0
+noise_scale = 1.0
+
+[[sensitivity.conditions]]
+name = "bias_only"
+bias_scale = 1.0
+noise_scale = 0.0
+
+[[sensitivity.conditions]]
+name = "nominal"
+bias_scale = 1.0
+noise_scale = 1.0
+
+[[sensitivity.conditions]]
+name = "stressed"
+bias_scale = 3.0
+noise_scale = 3.0

@@ -1,0 +1,23 @@
+[vehicle]
+mass_kg = 1.0
+inertia_kg_m2 = [0.02, 0.02, 0.04]
+gravity_m_s2 = 9.81
+linear_drag_n_s_m = 0.10
+
+[controller]
+position_kp_s2 = [1.8, 1.8, 2.5]
+velocity_kd_s = [2.4, 2.4, 2.8]
+attitude_kp_s = 5.0
+rate_kp_s = 12.0
+max_tilt_deg = 25.0
+max_body_rate_rad_s = 4.0
+max_total_thrust_n = 20.0
+max_torque_nm = [0.4, 0.4, 0.2]
+
+[demo]
+duration_s = 8.0
+step_s = 0.01
+target_position_m = [0.0, 0.0, 1.0]
+target_yaw_deg = 0.0
+seed = 7
+

@@ -1,0 +1,36 @@
+# M7 flight demonstration; M6 benchmark remains unchanged.
+[inputs]
+planner_config = "configs/rrt_star.toml"
+vehicle_config = "configs/hover.toml"
+
+[planning]
+seeds = [11, 19, 29]
+vehicle_radius_m = 0.18
+# Path planning uses a 0.68 m center envelope, retaining 0.43 m beyond
+# the accepted 0.25 m M6 flight collision envelope as tracking reserve.
+clearance_m = 0.50
+
+[trajectory]
+max_speed_m_s = 1.25
+max_acceleration_m_s2 = 1.8
+# Extra control reserve below the hard limits; durations are chosen to these targets.
+retiming_target_speed_m_s = 0.9
+retiming_target_acceleration_m_s2 = 1.0
+max_tilt_deg = 20.0
+min_thrust_n = 5.0
+max_thrust_n = 16.0
+initial_segment_s = 1.0
+max_segment_s = 20.0
+stretch_factor = 1.25
+
+[simulation]
+step_s = 0.01
+settle_s = 2.0
+yaw_deg = 0.0
+max_position_error_m = 0.6
+final_error_m = 0.15
+settle_mean_error_m = 0.15
+
+[demonstration]
+scenarios = ["open", "detour", "altitude", "barrier"]
+visual_seed = 11

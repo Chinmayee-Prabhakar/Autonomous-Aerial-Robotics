@@ -1,0 +1,90 @@
+[inputs]
+vehicle_config = "configs/hover.toml"
+m7_trajectory_config = "configs/trajectory_m7.toml"
+
+[camera]
+fx_px = 220.0
+fy_px = 220.0
+cx_px = 160.0
+cy_px = 120.0
+width_px = 320
+height_px = 240
+rotation_camera_to_body = [[0.0, 0.0, 1.0], [-1.0, 0.0, 0.0], [0.0, -1.0, 0.0]]
+translation_camera_in_body_m = [0.08, 0.0, 0.02]
+
+[workspace]
+minimum = [-1.5, -3.0, -1.0]
+maximum = [19.0, 3.0, 4.0]
+vehicle_radius_m = 0.18
+actual_clearance_m = 0.07
+planning_clearance_m = 0.14
+
+[guidance]
+approach_distance_m = 2.25
+exit_distance_m = 1.30
+image_period_s = 0.35
+max_loss_s = 1.40
+max_tracking_error_m = 0.55
+final_segment_error_m = 0.16
+max_pose_jump_m = 0.35
+settle_s = 1.0
+reacquire_s = 1.75
+
+[render]
+noise_std_rgb = 3.0
+illumination = 1.0
+blur = false
+
+[[windows]]
+window_id = "alpha"
+width_m = 1.80
+height_m = 1.60
+center_world_m = [5.0, 0.0, 1.60]
+right_world = [0.0, -1.0, 0.0]
+up_world = [0.0, 0.0, 1.0]
+frame_thickness_m = 0.16
+outer_width_m = 9.0
+outer_height_m = 7.0
+color_rgb = [245, 45, 35]
+
+[[windows]]
+window_id = "beta"
+width_m = 1.90
+height_m = 1.70
+center_world_m = [10.0, 0.60, 1.82]
+right_world = [0.20791169081775934, -0.9781476007338057, 0.0]
+up_world = [0.0, 0.0, 1.0]
+frame_thickness_m = 0.16
+outer_width_m = 9.0
+outer_height_m = 7.0
+color_rgb = [45, 235, 55]
+
+[[windows]]
+window_id = "gamma"
+width_m = 1.85
+height_m = 1.65
+center_world_m = [15.0, -0.55, 1.42]
+right_world = [-0.13917310096006544, -0.9902680687415704, 0.0]
+up_world = [0.0, 0.0, 1.0]
+frame_thickness_m = 0.16
+outer_width_m = 9.0
+outer_height_m = 7.0
+color_rgb = [45, 75, 245]
+
+[mission]
+ordered_window_ids = ["alpha", "beta", "gamma"]
+start_world_m = [0.0, 0.0, 0.0]
+takeoff_world_m = [0.0, 0.0, 1.60]
+nominal_seeds = [11, 19, 29]
+stressed_seeds = [37, 43, 53]
+stressed_noise_std_rgb = 9.0
+stressed_dropout_probability = 0.05
+stressed_initial_lateral_offsets_m = [-0.12, 0.08, 0.16]
+
+[acceptance]
+min_completed_nominal = 3
+min_completed_stressed = 2
+minimum_actual_clearance_m = 0.01
+max_mean_corner_error_px = 6.0
+max_mean_translation_error_m = 0.18
+max_mean_orientation_error_deg = 12.0

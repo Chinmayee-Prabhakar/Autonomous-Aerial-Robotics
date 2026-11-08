@@ -1,0 +1,47 @@
+# M6 geometric planning only; ENU coordinates and metres throughout.
+[planner]
+max_iterations = 650
+step_m = 0.8
+neighbor_radius_m = 1.7
+goal_radius_m = 1.3
+goal_bias = 0.16
+seeds = [11, 19, 29, 37, 43, 53, 61, 71, 83, 97]
+vehicle_radius_m = 0.18
+clearance_m = 0.07
+
+[[scenarios]]
+name = "open"
+workspace_min = [0.0, 0.0, 0.0]
+workspace_max = [10.0, 6.0, 5.0]
+start = [1.0, 3.0, 1.0]
+goal = [9.0, 3.0, 1.0]
+obstacles = []
+
+[[scenarios]]
+name = "detour"
+workspace_min = [0.0, 0.0, 0.0]
+workspace_max = [10.0, 6.0, 5.0]
+start = [1.0, 3.0, 1.0]
+goal = [9.0, 3.0, 1.0]
+obstacles = [{type = "sphere", center = [5.0, 3.0, 1.0], radius_m = 1.1}]
+
+[[scenarios]]
+name = "altitude"
+workspace_min = [0.0, 0.0, 0.0]
+workspace_max = [10.0, 5.0, 5.0]
+start = [1.0, 2.5, 1.0]
+goal = [9.0, 2.5, 1.0]
+# This wall touches both y boundaries: every feasible path must pass above it.
+obstacles = [
+  {type = "box", minimum = [4.2, 0.0, 0.0], maximum = [5.4, 5.0, 3.15]},
+  {type = "sphere", center = [7.0, 2.5, 2.2], radius_m = 0.55},
+]
+
+[[scenarios]]
+name = "barrier"
+workspace_min = [0.0, 0.0, 0.0]
+workspace_max = [10.0, 5.0, 5.0]
+start = [1.0, 2.5, 1.0]
+goal = [9.0, 2.5, 1.0]
+# Spans the full y/z cross section; finite search still reports only budget exhaustion.
+obstacles = [{type = "box", minimum = [4.2, 0.0, 0.0], maximum = [5.4, 5.0, 5.0]}]

@@ -1,0 +1,55 @@
+# Six-axis baseline gain fixed before evaluating the A2 truth trajectories.
+[filter]
+beta_per_s = 0.08
+initial_quaternion_bw = [1.0, 0.0, 0.0, 0.0]
+gravity_m_s2 = 9.81
+# Optional extension: accel_norm_gate_m_s2 = 0.5
+# Omitted by default so the standard, ungated Madgwick update is the baseline.
+
+[evaluation]
+input_root = "outputs/imu"
+imu_config = "configs/imu.toml"
+# Comparison-only magnitude gate; the standard Madgwick baseline above remains ungated.
+diagnostic_gate_m_s2 = 0.5
+diagnostic_time_s = 2.88
+
+# Analytic stationary sensor held at a known tilt by an external support.
+[static_tilt]
+duration_s = 10.0
+sample_hz = 100.0
+roll_deg = 17.1887338539
+pitch_deg = -11.4591559026
+
+# Analytic constant body-rate sensor trajectory; no quadrotor plant used.
+[known_rotation]
+duration_s = 6.0
+sample_hz = 50.0
+body_rate_rad_s = [0.18, -0.12, 0.23]
+
+[sensitivity]
+seeds = [11, 19, 29]
+
+[[sensitivity.cases]]
+name = "ideal"
+bias_scale = 0.0
+noise_scale = 0.0
+
+[[sensitivity.cases]]
+name = "noise_only"
+bias_scale = 0.0
+noise_scale = 1.0
+
+[[sensitivity.cases]]
+name = "bias_only"
+bias_scale = 1.0
+noise_scale = 0.0
+
+[[sensitivity.cases]]
+name = "nominal"
+bias_scale = 1.0
+noise_scale = 1.0
+
+[[sensitivity.cases]]
+name = "stressed"
+bias_scale = 3.0
+noise_scale = 3.0

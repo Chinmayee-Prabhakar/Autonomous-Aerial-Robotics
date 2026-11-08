@@ -1,0 +1,91 @@
+[inputs]
+m9_config = "configs/window_m9.toml"
+
+[workspace]
+minimum = [-1.5, -6.5, -1.0]
+maximum = [25.5, 6.5, 4.0]
+vehicle_radius_m = 0.18
+actual_clearance_m = 0.07
+planning_clearance_m = 0.14
+
+[delta]
+window_id = "delta"
+width_m = 2.70
+height_m = 2.05
+center_world_m = [21.0, 0.0, 1.60]
+right_world = [0.0, -1.0, 0.0]
+up_world = [0.0, 0.0, 1.0]
+frame_thickness_m = 0.16
+outer_width_m = 9.0
+outer_height_m = 7.0
+color_rgb = [35, 225, 210]
+
+[arm]
+pivot_right_m = 0.0
+pivot_up_m = 0.0
+length_m = 0.88
+arm_radius_m = 0.10
+initial_angle_rad = 0.9
+angular_velocity_rad_s = 0.35
+
+[guidance]
+step_s = 0.01
+image_period_s = 0.20
+max_observation_age_s = 0.65
+max_wait_s = 30.0
+prediction_horizon_s = 12.0
+settle_s = 1.0
+max_tracking_error_m = 0.60
+static_approach_distance_m = 2.25
+static_exit_distance_m = 1.30
+delta_approach_distance_m = 2.25
+delta_exit_distance_m = 0.72
+delta_corridor_right_m = -0.68
+max_yaw_rate_rad_s = 0.55
+
+[route]
+# The finite delta wall ends at local right +/-4.5 m. The outer path
+# crosses its plane at y=5.30 m, clear of the modeled 0.25 m envelope.
+bypass_world_m = [[22.4, 0.35, 1.60], [22.4, 5.30, 1.60],
+                  [17.4, 5.30, 1.60], [17.4, -0.55, 1.42]]
+
+[landing]
+touchdown_height_m = 0.08
+horizontal_error_m = 0.20
+horizontal_speed_m_s = 0.15
+vertical_speed_m_s = 0.18
+body_rate_rad_s = 0.15
+tilt_deg = 10.0
+
+[render]
+noise_std_rgb = 3.0
+illumination = 1.0
+blur = false
+
+[experiments]
+hero_seed = 101
+trial_seeds = [101, 103, 107, 109, 113, 127]
+initial_phases_rad = [0.9, 1.3, 2.0, 2.8, 4.0, 5.1]
+noise_std_rgb = [3.0, 3.0, 4.0, 5.0, 3.0, 6.0]
+dropout_probability = [0.0, 0.0, 0.02, 0.04, 0.0, 0.05]
+
+[failure_cases]
+visual_loss_seed = 201
+blocked_arm_seed = 203
+blocked_arm_phase_rad = 3.141592653589793
+
+[sensitivity]
+arm_length_m = 0.90
+arm_radius_m = 0.105
+seed = 211
+initial_phase_rad = 2.0
+
+[acceptance]
+minimum_completed_trials = 4
+minimum_static_clearance_m = 0.005
+minimum_dynamic_clearance_m = 0.005
+maximum_speed_m_s = 1.25
+maximum_acceleration_m_s2 = 1.8
+maximum_thrust_n = 16.0
+minimum_thrust_n = 5.0
+maximum_tilt_deg = 20.0

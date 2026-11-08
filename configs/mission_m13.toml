@@ -1,0 +1,30 @@
+[source]
+mission_config = "configs/mission_m11.toml"
+static_scene_plan = "outputs/realism_m12/scene_plan.json"
+blender_scene = "outputs/realism_m12/indoor_facility.blend"
+blender_script = "tools/m12/blender_render.py"
+
+[camera]
+static_image_period_s = 0.8
+max_images = 400
+render_device = "CPU"
+
+[guidance]
+# Keep the large delta frame inside the unchanged 320x240 onboard image.
+delta_approach_distance_m = 3.0
+
+[development]
+seed = 101
+arm_initial_phase_rad = 0.9
+noise_std_rgb = 0.0
+
+[final_trials]
+seeds = [101, 103, 107]
+arm_initial_phases_rad = [0.9, 1.3, 2.0]
+dropout_probabilities = [0.0, 0.0, 0.02]
+
+[negative_cases]
+forced_visual_loss_seed = 201
+blocked_arm_seed = 203
+blocked_arm_phase_rad = 3.141592653589793
+blocked_arm_max_wait_s = 3.0

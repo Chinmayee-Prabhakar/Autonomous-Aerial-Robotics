@@ -1,0 +1,38 @@
+# Physical and control parameters intentionally match the A1 hover baseline.
+[vehicle]
+mass_kg = 1.0
+inertia_kg_m2 = [0.02, 0.02, 0.04]
+gravity_m_s2 = 9.81
+linear_drag_n_s_m = 0.10
+
+[controller]
+position_kp_s2 = [1.8, 1.8, 2.5]
+velocity_kd_s = [2.4, 2.4, 2.8]
+attitude_kp_s = 5.0
+rate_kp_s = 12.0
+max_tilt_deg = 25.0
+max_body_rate_rad_s = 4.0
+max_total_thrust_n = 20.0
+max_torque_nm = [0.4, 0.4, 0.2]
+
+[demo]
+duration_s = 10.0
+step_s = 0.01
+target_position_m = [0.0, 0.0, 1.0]
+target_yaw_deg = 0.0
+seed = 7
+
+[imu]
+sample_hz = 50.0
+# Constant per-axis biases: accelerometer m/s², gyroscope rad/s.
+accel_bias_m_s2 = [0.02, -0.01, 0.03]
+gyro_bias_rad_s = [0.001, -0.002, 0.0015]
+# Independent Gaussian standard deviations PER SAMPLE, not noise densities.
+accel_noise_std_m_s2 = [0.03, 0.03, 0.04]
+gyro_noise_std_rad_s = [0.003, 0.003, 0.004]
+seed = 19
+
+[maneuver]
+switch_time_s = 2.5
+target_position_m = [1.0, 0.0, 1.0]
+target_yaw_deg = 0.0

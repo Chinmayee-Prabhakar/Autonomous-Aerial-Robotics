@@ -1,0 +1,37 @@
+[source]
+trial_dir = "outputs/mission_m11/trial_101"
+mission_config = "configs/mission_m11.toml"
+expected_m11_head = "d2b2d1af077f9d24206fee52569235298b9212b8"
+
+[render]
+engine = "CYCLES"
+device = "CPU"
+camera_width_px = 320
+camera_height_px = 240
+preview_width_px = 480
+preview_height_px = 270
+samples = 16
+preview_samples = 24
+resolution_percentage = 100
+film_transparent = false
+
+[appearance]
+seed = 1211
+bright_energy_scale = 1.0
+dim_energy_scale = 0.50
+shadow_energy_scale = 0.72
+paint_roughness = 0.76
+metal_roughness = 0.42
+
+[dataset]
+static_distances_per_side = 3
+arm_observations = 12
+include_partial_views = true
+development_index = 0
+held_out_indices = [1, 2]
+
+[presentation]
+external_frames = 84
+onboard_frames = 48
+arm_frames = 25
+gif_frame_delay_ms = 160

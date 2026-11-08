@@ -1,0 +1,35 @@
+[camera]
+fx_px = 500.0
+fy_px = 500.0
+cx_px = 320.0
+cy_px = 240.0
+width_px = 640
+height_px = 480
+rotation_camera_to_body = [[0.0, 0.0, 1.0], [-1.0, 0.0, 0.0], [0.0, -1.0, 0.0]]
+translation_camera_in_body_m = [0.08, 0.0, 0.02]
+
+[window_primary]
+window_id = "alpha"
+width_m = 1.4
+height_m = 1.1
+center_world_m = [4.0, 0.0, 1.5]
+right_world = [0.0, -1.0, 0.0]
+up_world = [0.0, 0.0, 1.0]
+frame_thickness_m = 0.08
+
+[window_secondary]
+window_id = "beta"
+width_m = 1.2
+height_m = 1.0
+center_world_m = [5.0, -1.3, 1.5]
+right_world = [0.0, -1.0, 0.0]
+up_world = [0.0, 0.0, 1.0]
+frame_thickness_m = 0.08
+
+[experiment]
+seeds = [11, 19, 29, 37, 43]
+noise_std_px = [0.0, 0.5, 1.5, 3.0]
+dropout_probabilities = [0.0, 0.1, 0.25, 0.5, 1.0]
+max_translation_error_m_at_1_5_px = 0.35
+max_orientation_error_deg_at_1_5_px = 15.0
+max_reprojection_rmse_px_at_1_5_px = 3.0
