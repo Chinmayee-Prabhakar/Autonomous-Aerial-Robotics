@@ -4,6 +4,16 @@ This project is a Python simulation of a quadrotor that finds and flies through 
 
 The important part is that the full mission uses **new Blender camera images from the drone's current simulated position** to find the openings and time the rotating-arm crossing. The flight is not a prerecorded path played back in Blender. Python generates the trajectory references and controller commands, integrates the vehicle dynamics, and checks for modeled collisions.
 
+## Demo
+
+![Blender indoor environment with four window openings](assets/indoor_facility.png)
+
+The Blender facility has connected indoor rooms and four window openings; the final opening contains the centered rotating arm.
+
+![Time-compressed complete quadrotor mission](assets/full_mission.gif)
+
+This time-compressed, 64-frame animation samples the complete successful M13 flight. New Blender camera images guide window navigation and rotating-arm timing, while Python computes the control commands and vehicle dynamics.
+
 ## What is in the project?
 
 - **Flight and control:** six-degree-of-freedom quadrotor model, cascaded position/attitude/rate control, thrust and body-torque commands.
